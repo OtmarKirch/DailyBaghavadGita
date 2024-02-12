@@ -13,23 +13,19 @@ app.use(express.static("public"))
 
 // API with content for website
 // https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3
-   
-
-app.get("/", async (req, res) => {
-  
-  let displayData = {
+// variables for API request declared
+const randChapterIndex = Math.floor(Math.random()*18) // Select one of the 18 chapters 
+const baseUrlRequestChapter = 'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'
+const UrlRequestChapter = baseUrlRequestChapter + randChapterIndex + "/"
+let optionsChapter = {}
+let displayData = {
     name_translated: "testthisobject",
     chapter_summary: "testanotherobject",
     chapter_number: "testchapter"
   }
-
-  // Request chapter data
-  const randChapterIndex = Math.floor(Math.random()*18) // Select one of the 18 chapters 
-  const baseUrlRequestChapter = 'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'
-  const UrlRequestChapter = baseUrlRequestChapter + randChapterIndex + "/"
-
-  
-  const optionsChapter = {
+// Request chapter data function
+function getChapterData(req, res, next){
+  optionsChapter = {
     method: 'GET',
     url: UrlRequestChapter,
     headers: {
@@ -37,7 +33,13 @@ app.get("/", async (req, res) => {
       'X-RapidAPI-Host': 'bhagavad-gita3.p.rapidapi.com'
     }
   };
+  next()
+}
 
+app.use(getChapterData)
+
+// 
+app.get("/", async (req, res) => {
   try {
     const response = await axios.request(optionsChapter);
     // console.log(response.data);
