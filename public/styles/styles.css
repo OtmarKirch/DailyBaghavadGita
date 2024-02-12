@@ -1,0 +1,12 @@
+* {
+    background-color: darkgray;
+}
+
+h1,h2 {
+    color: yellow;
+}
+
+p {
+    color: green;
+    /* background-image: ; */
+}
