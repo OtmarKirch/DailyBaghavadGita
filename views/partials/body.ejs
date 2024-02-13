@@ -1,8 +1,19 @@
 <body>
-    <h1>Daily Bhagavad Gita</h1>
-    <h2><%= name_translated %></h2>
-    <p>Selected Chapter: <%= chapter_number %></p>
-    <p><%= chapter_summary %></p>
-    <h2>First sentence of verse <%= verse_number %> </h2>
-    <p><%= verse_first_sentence %></p>
+    <div class="allContent">
+    <div class="container">
+        <h1>Daily Bhagavad Gita</h1>
+        <p class="mid">See a random chapter of the Bhagavad Gita and read the first sentence of a random verse.</p>
+        <p class="mid">Selected Chapter: <%= chapter_number %></p>
+    </div>
+
+    <div class="container">
+        <h2><%= name_translated %></h2>
+        <p><%= chapter_summary %></p>
+    </div>
+
+    <div class="container">
+        <h2>First sentence of verse <%= verse_number %> </h2>
+        <p><%= verse_first_sentence %></p>
+    </div>
+    </div>
 </body>

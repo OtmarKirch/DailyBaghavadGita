@@ -14,9 +14,7 @@ app.use(express.static("public"))
 // API with content for website
 // https://rapidapi.com/bhagavad-gita-bhagavad-gita-default/api/bhagavad-gita3
 // variables for API request declared
-const randChapterIndex = Math.floor(Math.random()*18) // Select one of the 18 chapters 
-const baseUrlRequestChapter = 'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'
-const UrlRequestChapter = baseUrlRequestChapter + randChapterIndex + "/"
+let randChapterIndex;
 let optionsChapter = {}
 let displayData = {
     name_translated: "testthisobject",
@@ -25,6 +23,10 @@ let displayData = {
   }
 // Request chapter data function
 function getChapterData(req, res, next){
+  randChapterIndex = Math.floor(Math.random()*18) // Select one of the 18 chapters 
+  const baseUrlRequestChapter = 'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'
+  const UrlRequestChapter = baseUrlRequestChapter + randChapterIndex + "/"
+ 
   optionsChapter = {
     method: 'GET',
     url: UrlRequestChapter,
