@@ -21,6 +21,33 @@ let displayData = {
     chapter_summary: "testanotherobject",
     chapter_number: "testchapter"
   }
+
+let backgroundData = 5
+
+function randomBackground(req, res, next){
+  let svgCode = "red"
+  const randNumber = 1 //Math.floor(Math.random()*2 + 1)
+  console.log(randNumber)
+  backgroundData = "data updated"
+  switch (randNumber){
+    case 1:
+      readFile('public/images/pattern.svg', 'utf-8', (err, data) => {
+        if (err) throw err;
+        // console.log(data);
+        backgroundData = data
+        // console.log("switch case 1")
+      })
+      break
+    case 2:
+      svgCode = "testCase2"
+      backgroundData = svgCode
+      break
+    default:
+      break
+  }
+  next()
+}
+
 // Request chapter data function
 function getChapterData(req, res, next){
   randChapterIndex = Math.floor(Math.random()*18) // Select one of the 18 chapters 
@@ -38,13 +65,19 @@ function getChapterData(req, res, next){
   next()
 }
 
-app.use(getChapterData)
+app.use(getChapterData, randomBackground, (req, res, next) =>{
+  // console.log(backgroundData)
+  next()
+})
 
 // 
 app.get("/", async (req, res) => {
+  
   try {
+    
     const response = await axios.request(optionsChapter);
     // console.log(response.data);
+    console.log(backgroundData)
     
     displayData.name_translated = response.data.name_translated
     displayData.chapter_summary = response.data.chapter_summary
