@@ -58,7 +58,7 @@ function getChapterData(req, res, next){
     method: 'GET',
     url: UrlRequestChapter,
     headers: {
-      'X-RapidAPI-Key': '422a8fc6admsh66d86a34578cbf3p17f7bejsn40d86ef8bbd3',
+      'X-RapidAPI-Key': 'Your API Key',
       'X-RapidAPI-Host': 'bhagavad-gita3.p.rapidapi.com'
     }
   };
